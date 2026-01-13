@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Woodcraft — Konzept 3: Minimal Dark</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --schwarz: #1a1a1a;
+  --holz: #c9a87c;
+  --grau: #3a3a3a;
+  --hell: #f5f5f5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: var(--schwarz);
+  color: var(--hell);
+  line-height: 1.6;
+}
+
+/* ---------- HERO MINIMAL ---------- */
+
+.hero-minimal {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-minimal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920") center/cover;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.hero-minimal-inhalt {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-minimal h1 {
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 200;
+  letter-spacing: 15px;
+  color: var(--holz);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.hero-minimal p {
+  font-size: 1.1rem;
+  font-weight: 200;
+  letter-spacing: 3px;
+  color: var(--hell);
+  opacity: 0.7;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 60px;
+  background: var(--holz);
+  opacity: 0.5;
+}
+
+/* ---------- ABOUT CARDS ---------- */
+
+.about-cards {
+  padding: 15rem 6vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.about-card {
+  background: var(--grau);
+  padding: 4rem 3rem;
+  border-left: 3px solid var(--holz);
+  transition: all 0.4s ease;
+}
+
+.about-card:hover {
+  background: var(--holz);
+  color: var(--schwarz);
+  transform: translateY(-10px);
+}
+
+.about-card h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.about-card p {
+  font-weight: 200;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+/* ---------- WORK FULLSCREEN ---------- */
+
+.work-fullscreen {
+  padding: 10rem 0;
+}
+
+.work-item {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 4rem;
+}
+
+.work-item:nth-child(even) {
+  grid-template-columns: 1fr 1fr;
+  direction: rtl;
+}
+
+.work-item:nth-child(even) > * {
+  direction: ltr;
+}
+
+.work-bild {
+  background-size: cover;
+  background-position: center;
+}
+
+.work-info {
+  background: var(--grau);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem;
+}
+
+.work-nummer {
+  font-size: 5rem;
+  font-weight: 200;
+  color: var(--holz);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 2rem;
+}
+
+.work-info h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+}
+
+.work-info p {
+  font-weight: 200;
+  font-size: 1.1rem;
+  line-height: 1.9;
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+.work-specs {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(201, 168, 124, 0.3);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: var(--holz);
+}
+
+/* ---------- CONTACT CENTERED ---------- */
+
+.contact-centered {
+  padding: 15rem 6vw;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-centered h2 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 200;
+  letter-spacing: 8px;
+  color: var(--holz);
+  margin-bottom: 4rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  margin-bottom: 5rem;
+}
+
+.contact-item {
+  padding: 3rem 2rem;
+  background: var(--grau);
+  border-bottom: 2px solid var(--holz);
+}
+
+.contact-item h4 {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  color: var(--holz);
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.contact-item p {
+  font-size: 1.2rem;
+  font-weight: 200;
+}
+
+/* ---------- LOGIN MINIMAL ---------- */
+
+.login-minimal {
+  padding: 10rem 6vw;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.login-minimal h2 {
+  font-size: 2.5rem;
+  font-weight: 200;
+  letter-spacing: 5px;
+  color: var(--holz);
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.login-minimal input {
+  width: 100%;
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(201, 168, 124, 0.3);
+  color: var(--hell);
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
+  letter-spacing: 2px;
+  transition: border 0.3s ease;
+}
+
+.login-minimal input:focus {
+  outline: none;
+  border-bottom-color: var(--holz);
+}
+
+.login-minimal input::placeholder {
+  color: rgba(245, 245, 245, 0.3);
+}
+
+.login-minimal button {
+  width: 100%;
+  padding: 1.5rem;
+  background: transparent;
+  border: 2px solid var(--holz);
+  color: var(--holz);
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+}
+
+.login-minimal button:hover {
+  background: var(--holz);
+  color: var(--schwarz);
+}
+
+.login-note {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  opacity: 0.3;
+  letter-spacing: 2px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 1000px) {
+  .about-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .work-item,
+  .work-item:nth-child(even) {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .work-bild {
+    height: 50vh;
+  }
+  
+  .work-info {
+    padding: 4rem 6vw;
+  }
+  
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO MINIMAL -->
+<section class="hero-minimal">
+  <div class="hero-minimal-inhalt">
+    <h1>WOOD</h1>
+    <p>HANDCRAFTED TABLES — EST. 1987</p>
+  </div>
+  <div class="scroll-indicator"></div>
+</section>
+
+<!-- ABOUT CARDS -->
+<section class="about-cards">
+  <div class="about-card">
+    <h3>MATERIAL</h3>
+    <p>Ausschließlich Massivholz aus nachhaltiger Forstwirtschaft. Eiche, Nussbaum, Ahorn – jedes Stück mit eigener Maserung.</p>
+  </div>
+  
+  <div class="about-card">
+    <h3>HANDWERK</h3>
+    <p>Traditionelle Holzverbindungen, präzise Handarbeit, keine Massenproduktion. Jeder Tisch trägt die Signatur des Schreiners.</p>
+  </div>
+  
+  <div class="about-card">
+    <h3>ZEITLOS</h3>
+    <p>Design, das Jahrzehnte überdauert. Keine Trends, keine Kompromisse. Nur ehrliches, langlebiges Möbelhandwerk.</p>
+  </div>
+</section>
+
+<!-- WORK FULLSCREEN -->
+<section class="work-fullscreen">
+  
+  <div class="work-item">
+    <div class="work-bild" style="background-image: url('https://images.unsplash.com/photo-1616627452584-71c3c1b0f9a1?w=1200');"></div>
+    <div class="work-info">
+      <div class="work-nummer">01</div>
+      <h3>ESSTISCH</h3>
+      <p>Massivholz Eiche, durchgehende Lamellen, geölt und mehrfach geschliffen. Die Maserung erzählt die Geschichte des Baumes.</p>
+      <p>Für eine Familie in Stuttgart gefertigt.</p>
+      <div class="work-specs">240 × 100 × 75 CM</div>
+    </div>
+  </div>
+
+  <div class="work-item">
+    <div class="work-bild" style="background-image: url('https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=1200');"></div>
+    <div class="work-info">
+      <div class="work-nummer">02</div>
+      <h3>COUCHTISCH</h3>
+      <p>Nussbaum mit natürlicher Baumkante, gewachst. Jede Unregelmäßigkeit macht dieses Stück einzigartig.</p>
+      <p>Im Atelier eines Architekten.</p>
+      <div class="work-specs">120 × 70 × 45 CM</div>
+    </div>
+  </div>
+
+  <div class="work-item">
+    <div class="work-bild" style="background-image: url('https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=1200');"></div>
+    <div class="work-info">
+      <div class="work-nummer">03</div>
+      <h3>SCHREIBTISCH</h3>
+      <p>Ahorn massiv, minimalistisches Design mit versteckten Schubladenführungen. Form folgt Funktion.</p>
+      <p>Maßgefertigt für ein Home Office.</p>
+      <div class="work-specs">180 × 80 × 75 CM</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- CONTACT CENTERED -->
+<section class="contact-centered">
+  <h2>KONTAKT</h2>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <h4>TELEFON</h4>
+      <p>+49 7141 555 123</p>
+    </div>
+    <div class="contact-item">
+      <h4>E-MAIL</h4>
+      <p>info@woodcraft.de</p>
+    </div>
+    <div class="contact-item">
+      <h4>WERKSTATT</h4>
+      <p>Ludwigsburg</p>
+    </div>
+    <div class="contact-item">
+      <h4>TERMINE</h4>
+      <p>Nach Vereinbarung</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOGIN MINIMAL -->
+<section class="login-minimal">
+  <h2>LOGIN</h2>
+  <form>
+    <input type="email" placeholder="E-MAIL">
+    <input type="password" placeholder="PASSWORD">
+    <button type="button">ANMELDEN</button>
+    <p class="login-note">DESIGN MOCKUP</p>
+  </form>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Konzept 7 — Architect Portfolio (Mockup)</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1012;
+  --ink:#f4f4f4;
+  --muted:#b9bbc2;
+  --line: rgba(255,255,255,.12);
+  --stone:#1a1c20;
+  --wood:#b78b5a;
+  --radius: 22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 700px at 12% 0%, rgba(183,139,90,.12), transparent 55%),
+    radial-gradient(900px 700px at 88% 18%, rgba(255,255,255,.08), transparent 60%),
+    var(--bg);
+}
+.top{
+  position:sticky; top:0; z-index:50;
+  background: rgba(15,16,18,.62);
+  backdrop-filter: blur(14px) saturate(130%);
+  border-bottom: 1px solid var(--line);
+}
+.top__inner{
+  max-width:1220px; margin:0 auto;
+  padding: 16px 18px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+.brand{
+  text-decoration:none; color: var(--ink);
+  font-family: "Libre Baskerville", serif;
+  letter-spacing:.08em;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: .95rem;
+}
+.brand__dot{ color: var(--wood); }
+.nav{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+.nav__link{
+  color: var(--muted);
+  text-decoration:none;
+  padding: 10px 12px;
+  border-radius: 14px;
+}
+.nav__link:hover{ background: rgba(255,255,255,.06); color: var(--ink); }
+.nav__cta{
+  text-decoration:none; color: var(--ink);
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(183,139,90,.42);
+  background: rgba(183,139,90,.14);
+}
+
+.hero{
+  max-width:1220px; margin:0 auto;
+  padding: clamp(64px, 11vh, 130px) 18px 24px;
+}
+.hero__frame{
+  border-radius: var(--radius);
+  overflow:hidden;
+  border: 1px solid var(--line);
+  background: var(--stone);
+  display:grid;
+  grid-template-columns: .9fr 1.1fr;
+  align-items: stretch;
+}
+.hero__text{
+  padding: 28px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+}
+.kicker{
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-size: .82rem;
+}
+h1{
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  margin: 0;
+  font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+  line-height: 1.04;
+}
+.hero__text p{
+  margin:0;
+  color: var(--muted);
+  max-width: 52ch;
+}
+.hero__actions{ display:flex; gap: 12px; flex-wrap:wrap; }
+.btnPrimary{
+  text-decoration:none; color: #0f1012;
+  background: linear-gradient(135deg, rgba(183,139,90,1), rgba(255,232,204,1));
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-weight: 700;
+}
+.btnGhost{
+  text-decoration:none; color: var(--ink);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.06);
+  padding: 12px 16px;
+  border-radius: 16px;
+}
+.hero__img{
+  position: relative;
+}
+.hero__img img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  filter: contrast(1.06) saturate(1.05);
+}
+.hero__img:after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(90deg, rgba(26,28,32,.85), rgba(26,28,32,.05));
+}
+
+.section{
+  max-width:1220px; margin:0 auto;
+  padding: 88px 18px;
+}
+h2{
+  margin:0 0 12px;
+  font-family: "Libre Baskerville", serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+.sub{ color: var(--muted); margin:0; }
+.split{
+  margin-top: 18px;
+  display:grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 16px;
+  align-items: start;
+}
+.panel{
+  border-radius: var(--radius);
+  border:1px solid var(--line);
+  background: rgba(26,28,32,.72);
+  padding: 22px;
+}
+.list{
+  display:grid; gap: 12px; margin-top: 16px;
+}
+.item{
+  padding: 14px;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+}
+.item b{ color: var(--ink); }
+.gallery{
+  margin-top: 18px;
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+.g{
+  border-radius: var(--radius);
+  overflow:hidden;
+  border: 1px solid var(--line);
+  background: #222;
+}
+.g img{ width:100%; height:100%; object-fit:cover; display:block; }
+.gA{ grid-column: span 8; height: 420px; }
+.gB{ grid-column: span 4; height: 420px; }
+.gC{ grid-column: span 4; height: 260px; }
+.gD{ grid-column: span 8; height: 260px; }
+
+.input{ background: rgba(255,255,255,.06); color:#fff; }
+
+.foot{
+  border-top: 1px solid var(--line);
+  background: rgba(15,16,18,.72);
+}
+.foot__inner{
+  max-width:1220px; margin:0 auto;
+  padding:18px;
+  display:flex; justify-content:space-between; gap: 14px; flex-wrap:wrap;
+  color: var(--muted);
+}
+.foot__link{ color: var(--muted); text-decoration:none; }
+.foot__link:hover{ color: var(--ink); }
+
+/* Modal theme */
+.modal__panel{ background: #0d0e10; color: #f4f4f4; border:1px solid rgba(255,255,255,.10); }
+.modal__top{ background: rgba(255,255,255,.04); }
+.modal__close{ color:#f4f4f4; }
+.btn{ background: rgba(183,139,90,.22); color:#fff; border-color: rgba(183,139,90,.26); }
+.inline-link{ color:#ffe5cf; border-bottom-color: rgba(255,229,207,.22); }
+
+
+/* Modal (no JS) */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0,0,0,.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  z-index: 60;
+}
+.modal:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal__panel {
+  width: min(420px, 100%);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 28px 90px rgba(0,0,0,.35);
+}
+.modal__top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 14px 18px;
+}
+.modal__close {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  text-decoration:none;
+  border: 1px solid rgba(255,255,255,.12);
+}
+.modal__content {
+  padding: 18px;
+}
+.form {
+  display:grid;
+  gap: 12px;
+}
+.input {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.16);
+  outline: none;
+}
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.16);
+  cursor: pointer;
+  user-select: none;
+}
+.btn--full { width: 100%; }
+.muted { opacity: .78; }
+.small { font-size: .92rem; }
+
+@media (max-width: 980px){
+  .hero__frame{ grid-template-columns: 1fr; }
+  .split{ grid-template-columns: 1fr; }
+  .gA,.gB,.gC,.gD{ grid-column: span 12; height: 260px; }
+}
+</style>
+
+
+</head>
+<body>
+
+<header class="top">
+  <div class="top__inner">
+    <a class="brand" href="#top" aria-label="Home">Woodcraft<span class="brand__dot">•</span></a>
+    <nav class="nav" aria-label="Primärnavigation">
+      <a class="nav__link" href="#home">Start</a>
+<a class="nav__link" href="#principles">Principles</a>
+<a class="nav__link" href="#gallery">Portfolio</a>
+<a class="nav__link" href="#commission">Commission</a>
+      <a class="nav__cta" href="#login">Login</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  
+<section class="hero" id="home">
+  <div class="hero__frame">
+    <div class="hero__text">
+      <div>
+        <div class="kicker">Architect Portfolio • High‑End Custom</div>
+        <h1>Furniture as architecture.</h1>
+        <p>Minimaler Text. Große Bilder. Premium‑Vibe. Dieses Konzept wirkt wie ein Architekturbüro‑Portfolio.</p>
+      </div>
+      <div class="hero__actions">
+        <a class="btnPrimary" href="#gallery">Portfolio</a>
+        <a class="btnGhost" href="#commission">Commission</a>
+      </div>
+    </div>
+    <div class="hero__img">
+      <img alt="Hero" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1800&q=80">
+    </div>
+  </div>
+</section>
+
+  
+<section class="section" id="principles">
+  <h2>Principles</h2>
+  <p class="sub">Kurz, hochwertig, „architect language“ – perfekt, wenn man teure Maßanfertigungen verkaufen will.</p>
+  <div class="split">
+    <div class="panel">
+      <div class="list">
+        <div class="item"><b>Proportion</b><div class="sub">Kante, Stärke, Beinposition – klare Geometrie.</div></div>
+        <div class="item"><b>Material</b><div class="sub">Holz + Stein/Metall als ruhige Kontraste.</div></div>
+        <div class="item"><b>Finish</b><div class="sub">Matte Oberflächen, lichtstabil, langlebig.</div></div>
+      </div>
+    </div>
+    <div class="panel" style="padding:0; overflow:hidden;">
+      <img alt="Interior" src="https://images.unsplash.com/photo-1600585154203-63f5c5f84c48?auto=format&fit=crop&w=1600&q=80" style="width:100%; height:100%; object-fit:cover; display:block;">
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="gallery">
+  <h2>Portfolio</h2>
+  <p class="sub">Großes, ruhiges Grid. Wenig Captions – wie Kunst.</p>
+  <div class="gallery">
+    <div class="g gA"><img alt="A" src="https://images.unsplash.com/photo-1600585152915-d208bec867a1?auto=format&fit=crop&w=1600&q=80"></div>
+    <div class="g gB"><img alt="B" src="https://images.unsplash.com/photo-1616627452584-71c3c1b0f9a1?auto=format&fit=crop&w=1600&q=80"></div>
+    <div class="g gC"><img alt="C" src="https://images.unsplash.com/photo-1600585154203-63f5c5f84c48?auto=format&fit=crop&w=1600&q=80"></div>
+    <div class="g gD"><img alt="D" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1800&q=80"></div>
+  </div>
+</section>
+
+
+<section class="section" id="commission">
+  <h2>Commission</h2>
+  <p class="sub">Mockup‑Formular, clean & premium.</p>
+  <div class="split">
+    <div class="panel">
+      <p class="sub">Ablauf: Erstgespräch → Skizze → Materialwahl → Fertigung → Lieferung.</p>
+      <div class="hero__actions" style="margin-top:16px;">
+        <a class="btnPrimary" href="#login">Kundenlogin</a>
+        <a class="btnGhost" href="#top">Zurück</a>
+      </div>
+    </div>
+    <div class="panel">
+      <div style="display:grid; gap:10px;">
+        <input class="input" placeholder="Name" />
+        <input class="input" placeholder="E‑Mail" />
+        <input class="input" placeholder="Projekt / Maße" />
+        <textarea class="input" style="min-height:120px;" placeholder="Wünsche, Referenzen, Termin…"></textarea>
+        <a class="btnPrimary" href="#" style="text-align:center;">Request (Mockup)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div class="foot__left">Konzept 7 • Architect Portfolio / High‑End • Mockup</div>
+    <div class="foot__right">
+      <a class="foot__link" href="#top">Nach oben</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Login Modal (CSS :target) -->
+<div id="login" class="modal" aria-label="Login Dialog">
+  <div class="modal__panel">
+    <div class="modal__top">
+      <div class="modal__title">Kunden-Login</div>
+      <a class="modal__close" href="#" aria-label="Schließen">✕</a>
+    </div>
+    <div class="modal__content">
+      <p class="muted small">Mockup: Keine echte Funktion – nur UI/Design.</p>
+      <form class="form" action="#" method="post">
+        <input class="input" type="email" placeholder="E-Mail" autocomplete="email" />
+        <input class="input" type="password" placeholder="Passwort" autocomplete="current-password" />
+        <button class="btn btn--full" type="button">Einloggen</button>
+      </form>
+      <p class="muted small" style="margin-top:12px;">
+        <a href="#contact" class="inline-link">Zugang anfragen</a> • <a href="#" class="inline-link">Passwort vergessen</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

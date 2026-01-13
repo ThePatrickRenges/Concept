@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Woodcraft — Tischlerei & Manufaktur</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --nuss: #4a3428;
+  --creme: #ebe6dd;
+  --grau: #5a5550;
+  --akzent: #8b6f47;
+  --weiss: #faf8f5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Work Sans", sans-serif;
+  background: var(--weiss);
+  color: var(--grau);
+  line-height: 1.8;
+}
+
+/* ---------- NAVIGATION ---------- */
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(250, 248, 245, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(74, 52, 40, 0.1);
+}
+
+.nav-inhalt {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 1.5rem 6vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: "Lora", serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--nuss);
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--grau);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--nuss);
+}
+
+/* ---------- HERO SPLIT ---------- */
+
+.hero-split {
+  margin-top: 80px;
+  height: calc(100vh - 80px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.hero-bild {
+  background: url("https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200") center/cover;
+  position: relative;
+}
+
+.hero-bild::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 60%, rgba(74, 52, 40, 0.4));
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 8vw;
+  background: var(--creme);
+}
+
+.hero-text h1 {
+  font-family: "Lora", serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  color: var(--nuss);
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  max-width: 500px;
+  color: var(--grau);
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: var(--nuss);
+  color: var(--weiss);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+}
+
+.hero-btn:hover {
+  background: var(--akzent);
+  transform: translateY(-2px);
+}
+
+/* ---------- PHILOSOPHIE ---------- */
+
+.philosophie {
+  padding: 10rem 6vw;
+  background: var(--weiss);
+  text-align: center;
+}
+
+.philosophie-inhalt {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.philosophie h2 {
+  font-family: "Lora", serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--nuss);
+  margin-bottom: 2.5rem;
+}
+
+.philosophie p {
+  font-size: 1.15rem;
+  line-height: 2;
+  color: var(--grau);
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- PROZESS ---------- */
+
+.prozess {
+  padding: 8rem 6vw;
+  background: var(--creme);
+}
+
+.prozess-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.prozess h2 {
+  font-family: "Lora", serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--nuss);
+  margin-bottom: 5rem;
+  text-align: center;
+}
+
+.prozess-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+}
+
+.prozess-schritt {
+  text-align: center;
+}
+
+.schritt-nummer {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1.5rem;
+  border: 2px solid var(--akzent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Lora", serif;
+  font-size: 1.5rem;
+  color: var(--akzent);
+  font-weight: 600;
+}
+
+.prozess-schritt h3 {
+  font-family: "Lora", serif;
+  font-size: 1.3rem;
+  color: var(--nuss);
+  margin-bottom: 1rem;
+}
+
+.prozess-schritt p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* ---------- GALERIE ---------- */
+
+.galerie {
+  padding: 10rem 0;
+  background: var(--weiss);
+}
+
+.galerie h2 {
+  font-family: "Lora", serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--nuss);
+  margin-bottom: 5rem;
+  text-align: center;
+  padding: 0 6vw;
+}
+
+.galerie-masonry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 0 6vw;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.galerie-item {
+  position: relative;
+  overflow: hidden;
+  background: var(--creme);
+  cursor: pointer;
+}
+
+.galerie-item.tall {
+  grid-row: span 2;
+}
+
+.galerie-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.galerie-item:hover img {
+  transform: scale(1.08);
+}
+
+.galerie-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(74, 52, 40, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  padding: 2rem;
+  text-align: center;
+}
+
+.galerie-item:hover .galerie-overlay {
+  opacity: 1;
+}
+
+.galerie-overlay h3 {
+  font-family: "Lora", serif;
+  font-size: 1.5rem;
+  color: var(--weiss);
+  margin-bottom: 0.5rem;
+}
+
+.galerie-overlay p {
+  color: var(--creme);
+  font-size: 0.95rem;
+}
+
+/* ---------- KONTAKT FULL ---------- */
+
+.kontakt-full {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+}
+
+.kontakt-bild {
+  background: url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200") center/cover;
+}
+
+.kontakt-inhalt {
+  background: var(--nuss);
+  color: var(--weiss);
+  padding: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.kontakt-inhalt h2 {
+  font-family: "Lora", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 2rem;
+  color: var(--creme);
+}
+
+.kontakt-inhalt p {
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+  line-height: 1.8;
+}
+
+.kontakt-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.kontakt-zeile {
+  display: flex;
+  gap: 1rem;
+}
+
+.kontakt-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+  color: var(--akzent);
+  min-width: 100px;
+}
+
+.kontakt-wert {
+  color: var(--creme);
+}
+
+/* ---------- LOGIN INTEGRIERT ---------- */
+
+.login-sektion {
+  padding: 8rem 6vw;
+  background: var(--creme);
+}
+
+.login-container {
+  max-width: 500px;
+  margin: 0 auto;
+  background: var(--weiss);
+  padding: 4rem;
+  border: 1px solid rgba(74, 52, 40, 0.1);
+}
+
+.login-container h2 {
+  font-family: "Lora", serif;
+  font-size: 2rem;
+  color: var(--nuss);
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.form-gruppe {
+  margin-bottom: 1.5rem;
+}
+
+.form-gruppe label {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--grau);
+  margin-bottom: 0.5rem;
+}
+
+.form-gruppe input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid rgba(74, 52, 40, 0.2);
+  background: var(--creme);
+  font-size: 1rem;
+  font-family: "Work Sans", sans-serif;
+  transition: border 0.3s ease;
+}
+
+.form-gruppe input:focus {
+  outline: none;
+  border-color: var(--akzent);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 1.2rem;
+  background: var(--nuss);
+  color: var(--weiss);
+  border: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.login-btn:hover {
+  background: var(--akzent);
+}
+
+.login-hinweis {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--grau);
+  opacity: 0.6;
+  margin-top: 2rem;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 1100px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  
+  .hero-bild {
+    height: 50vh;
+  }
+  
+  .hero-text {
+    padding: 6rem 8vw;
+  }
+  
+  .prozess-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .galerie-masonry {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .kontakt-full {
+    grid-template-columns: 1fr;
+  }
+  
+  .kontakt-bild {
+    height: 300px;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .prozess-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .galerie-masonry {
+    grid-template-columns: 1fr;
+  }
+  
+  .galerie-item.tall {
+    grid-row: span 1;
+  }
+  
+  .kontakt-inhalt {
+    padding: 4rem 6vw;
+  }
+  
+  .login-container {
+    padding: 3rem 2rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-inhalt">
+    <div class="logo">WOODCRAFT</div>
+    <ul class="nav-links">
+      <li><a href="#start">Start</a></li>
+      <li><a href="#prozess">Prozess</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO SPLIT -->
+<section class="hero-split" id="start">
+  <div class="hero-bild"></div>
+  <div class="hero-text">
+    <h1>Tische mit Geschichte</h1>
+    <p>
+      Jedes Stück wird von Hand gefertigt. Traditionelle Verbindungen, 
+      ehrliches Material, zeitloses Handwerk. Seit 1987.
+    </p>
+    <a href="#kontakt" class="hero-btn">Anfrage stellen</a>
+  </div>
+</section>
+
+<!-- PHILOSOPHIE -->
+<section class="philosophie">
+  <div class="philosophie-inhalt">
+    <h2>Handwerk, nicht Produktion</h2>
+    <p>
+      In unserer Werkstatt entstehen keine zwei identischen Tische. 
+      Jedes Holz hat seine eigene Maserung, jede Verbindung wird präzise 
+      von Hand gearbeitet.
+    </p>
+    <p>
+      Wir verwenden ausschließlich Massivholz aus nachhaltiger Forstwirtschaft. 
+      Kein Furnier, keine Pressspanplatten. Nur das Echte.
+    </p>
+  </div>
+</section>
+
+<!-- PROZESS -->
+<section class="prozess" id="prozess">
+  <div class="prozess-container">
+    <h2>Vom Holz zum Tisch</h2>
+    <div class="prozess-grid">
+      
+      <div class="prozess-schritt">
+        <div class="schritt-nummer">1</div>
+        <h3>Beratung</h3>
+        <p>Persönliches Gespräch über Größe, Holzart und Verwendung.</p>
+      </div>
+
+      <div class="prozess-schritt">
+        <div class="schritt-nummer">2</div>
+        <h3>Holzauswahl</h3>
+        <p>Gemeinsame Auswahl der Holzbretter mit sichtbarer Maserung.</p>
+      </div>
+
+      <div class="prozess-schritt">
+        <div class="schritt-nummer">3</div>
+        <h3>Fertigung</h3>
+        <p>Handarbeit in der Werkstatt – Sägen, Hobeln, Verbinden.</p>
+      </div>
+
+      <div class="prozess-schritt">
+        <div class="schritt-nummer">4</div>
+        <h3>Veredelung</h3>
+        <p>Oberflächenbehandlung mit Öl oder Wachs, mehrfach geschliffen.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="galerie" id="galerie">
+  <h2>Unsere Arbeiten</h2>
+  <div class="galerie-masonry">
+    
+    <div class="galerie-item tall">
+      <img src="https://images.unsplash.com/photo-1616627452584-71c3c1b0f9a1?w=600" alt="Tisch">
+      <div class="galerie-overlay">
+        <h3>Esstisch Eiche</h3>
+        <p>280 × 100 cm, geölt</p>
+      </div>
+    </div>
+
+    <div class="galerie-item">
+      <img src="https://images.unsplash.com/photo-1600585152915-d208bec867a1?w=600" alt="Tisch">
+      <div class="galerie-overlay">
+        <h3>Couchtisch</h3>
+        <p>Nussbaum, Naturkante</p>
+      </div>
+    </div>
+
+    <div class="galerie-item">
+      <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=600" alt="Tisch">
+      <div class="galerie-overlay">
+        <h3>Schreibtisch</h3>
+        <p>Ahorn massiv</p>
+      </div>
+    </div>
+
+    <div class="galerie-item tall">
+      <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600" alt="Tisch">
+      <div class="galerie-overlay">
+        <h3>Besprechungstisch</h3>
+        <p>Wildeiche, 320 cm</p>
+      </div>
+    </div>
+
+    <div class="galerie-item">
+      <img src="https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=600" alt="Tisch">
+      <div class="galerie-overlay">
+        <h3>Konsolentisch</h3>
+        <p>Kirschbaum, 140 cm</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="kontakt-full" id="kontakt">
+  <div class="kontakt-bild"></div>
+  <div class="kontakt-inhalt">
+    <h2>Werkstattbesuch vereinbaren</h2>
+    <p>
+      Besuchen Sie uns in der Werkstatt. Wir zeigen Ihnen aktuelle Projekte, 
+      verschiedene Holzarten und besprechen Ihre Vorstellungen.
+    </p>
+    <div class="kontakt-details">
+      <div class="kontakt-zeile">
+        <span class="kontakt-label">Adresse</span>
+        <span class="kontakt-wert">Schreinerstraße 12, 71638 Ludwigsburg</span>
+      </div>
+      <div class="kontakt-zeile">
+        <span class="kontakt-label">Telefon</span>
+        <span class="kontakt-wert">+49 7141 555 123</span>
+      </div>
+      <div class="kontakt-zeile">
+        <span class="kontakt-label">E-Mail</span>
+        <span class="kontakt-wert">kontakt@woodcraft-lb.de</span>
+      </div>
+      <div class="kontakt-zeile">
+        <span class="kontakt-label">Öffnung</span>
+        <span class="kontakt-wert">Mo–Fr 9–17 Uhr, nach Vereinbarung</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGIN -->
+<section class="login-sektion">
+  <div class="login-container">
+    <h2>Kundenbereich</h2>
+    <form>
+      <div class="form-gruppe">
+        <label>E-Mail</label>
+        <input type="email" placeholder="ihre.email@beispiel.de">
+      </div>
+      <div class="form-gruppe">
+        <label>Passwort</label>
+        <input type="password" placeholder="••••••••">
+      </div>
+      <button type="button" class="login-btn">Anmelden</button>
+      <p class="login-hinweis">Nur Design-Mockup – keine aktive Funktion</p>
+    </form>
+  </div>
+</section>
+
+</body>
+</html>

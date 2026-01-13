@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Konzept 4 — Scandinavian Light (Mockup)</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbfbfb;
+  --card:#ffffff;
+  --ink:#1f2224;
+  --muted:#687077;
+  --line: rgba(31,34,36,.12);
+  --accent:#3a6b5b; /* sage */
+  --wood:#caa67a;   /* light oak */
+  --radius: 22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, rgba(202,166,122,.14), transparent 45%),
+    radial-gradient(1200px 700px at 85% 0%, rgba(58,107,91,.14), transparent 55%),
+    var(--bg);
+}
+
+.top{
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(251,251,251,.86);
+  backdrop-filter: blur(10px) saturate(140%);
+  border-bottom: 1px solid var(--line);
+}
+.top__inner{
+  max-width: 1180px; margin: 0 auto;
+  padding: 16px 18px;
+  display:flex; align-items:center; justify-content:space-between; gap: 16px;
+}
+.brand{
+  text-decoration:none; color: var(--ink);
+  font-weight: 600;
+  letter-spacing:.2px;
+}
+.brand__dot{ color: var(--accent); }
+.nav{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+.nav__link{
+  text-decoration:none; color: var(--muted);
+  padding: 10px 12px;
+  border-radius: 14px;
+}
+.nav__link:hover{ background: rgba(31,34,36,.05); color: var(--ink); }
+.nav__cta{
+  text-decoration:none; color: #fff;
+  background: var(--accent);
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.05);
+  box-shadow: 0 12px 30px rgba(58,107,91,.22);
+}
+
+.hero{
+  max-width:1180px; margin:0 auto;
+  padding: clamp(52px, 9vh, 100px) 18px 24px;
+  display:grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 22px;
+  align-items: stretch;
+}
+.hero__left{
+  background: rgba(255,255,255,.75);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+}
+.hero__kicker{
+  display:inline-flex; gap:10px; align-items:center;
+  font-size:.88rem; color: var(--muted);
+}
+.dot{ width:8px; height:8px; border-radius:50%; background: var(--wood); display:inline-block; }
+h1{
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+  line-height:1.03;
+  margin: 14px 0 12px;
+}
+.hero p{ color: var(--muted); max-width: 56ch; margin: 0; font-size: 1.08rem;}
+.hero__actions{ display:flex; gap: 12px; flex-wrap:wrap; margin-top: 18px; }
+.btnPrimary{
+  text-decoration:none; color: var(--ink);
+  background: rgba(202,166,122,.32);
+  border: 1px solid rgba(202,166,122,.46);
+  padding: 12px 16px; border-radius: 16px;
+}
+.btnSecondary{
+  text-decoration:none; color: var(--ink);
+  background: rgba(255,255,255,.9);
+  border: 1px solid var(--line);
+  padding: 12px 16px; border-radius: 16px;
+}
+.hero__img{
+  border-radius: var(--radius);
+  overflow:hidden;
+  border: 1px solid var(--line);
+  background:#eee;
+}
+.hero__img img{ width:100%; height:100%; display:block; object-fit:cover; }
+
+.section{
+  max-width:1180px; margin:0 auto;
+  padding: 74px 18px;
+}
+.grid2{
+  display:grid; grid-template-columns: 1fr 1fr;
+  gap: 22px; align-items: start;
+}
+.card{
+  background: rgba(255,255,255,.78);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.06);
+}
+h2{
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  margin: 0 0 12px;
+}
+.sub{ color: var(--muted); margin: 0; }
+.features{
+  display:grid; gap: 12px; margin-top: 16px;
+}
+.feature{
+  display:flex; gap: 12px; align-items:flex-start;
+  padding: 12px; border-radius: 16px;
+  border: 1px solid rgba(31,34,36,.08);
+  background: rgba(255,255,255,.72);
+}
+.badge{
+  display:inline-flex; align-items:center; justify-content:center;
+  width: 34px; height: 34px; border-radius: 12px;
+  background: rgba(58,107,91,.12);
+  border: 1px solid rgba(58,107,91,.24);
+  font-weight: 600; color: var(--accent);
+}
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+.tile{
+  border-radius: 18px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#eee;
+  box-shadow: 0 18px 45px rgba(0,0,0,.06);
+}
+.tile img{ width:100%; height: 220px; object-fit:cover; display:block; }
+.tile .cap{ padding: 12px 14px; color: var(--muted); font-size: .98rem; background: rgba(255,255,255,.85); }
+
+.foot{
+  border-top: 1px solid var(--line);
+  background: rgba(251,251,251,.88);
+}
+.foot__inner{
+  max-width:1180px; margin:0 auto;
+  padding:18px;
+  display:flex; justify-content:space-between; gap: 14px; flex-wrap:wrap;
+  color: var(--muted);
+}
+.foot__link{ color: var(--muted); text-decoration:none; }
+.foot__link:hover{ color: var(--ink); }
+
+/* Modal theme */
+.modal__panel{ background: #0f1312; color: #f2f5f4; }
+.modal__top{ background: rgba(255,255,255,.06); }
+.modal__close{ color:#f2f5f4; }
+.input{ background: rgba(255,255,255,.06); color:#fff; }
+.btn{ background: rgba(58,107,91,.28); color:#fff; }
+.inline-link{ color: #e6efe9; border-bottom-color: rgba(230,239,233,.26); }
+
+
+/* Modal (no JS) */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0,0,0,.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  z-index: 60;
+}
+.modal:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal__panel {
+  width: min(420px, 100%);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 28px 90px rgba(0,0,0,.35);
+}
+.modal__top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 14px 18px;
+}
+.modal__close {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  text-decoration:none;
+  border: 1px solid rgba(255,255,255,.12);
+}
+.modal__content {
+  padding: 18px;
+}
+.form {
+  display:grid;
+  gap: 12px;
+}
+.input {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.16);
+  outline: none;
+}
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.16);
+  cursor: pointer;
+  user-select: none;
+}
+.btn--full { width: 100%; }
+.muted { opacity: .78; }
+.small { font-size: .92rem; }
+
+@media (max-width: 940px){
+  .hero{ grid-template-columns: 1fr; }
+  .grid2{ grid-template-columns: 1fr; }
+}
+</style>
+
+
+</head>
+<body>
+
+<header class="top">
+  <div class="top__inner">
+    <a class="brand" href="#top" aria-label="Home">Woodcraft<span class="brand__dot">•</span></a>
+    <nav class="nav" aria-label="Primärnavigation">
+      <a class="nav__link" href="#home">Start</a>
+<a class="nav__link" href="#about">Über</a>
+<a class="nav__link" href="#gallery">Galerie</a>
+<a class="nav__link" href="#quote">Anfrage</a>
+      <a class="nav__cta" href="#login">Login</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  
+<section class="hero" id="home">
+  <div class="hero__left">
+    <div class="hero__kicker"><span class="dot"></span> Nordic Light • freundlich & modern</div>
+    <h1>Helles Holz. Klare Linien. Zuhause.</h1>
+    <p>Ein skandinavisch inspiriertes Layout: weich, freundlich, sauber – ideal für Privatkunden und Wohnräume.</p>
+    <div class="hero__actions">
+      <a class="btnPrimary" href="#gallery">Galerie</a>
+      <a class="btnSecondary" href="#quote">Angebot anfragen</a>
+    </div>
+  </div>
+  <div class="hero__img">
+    <img alt="Helles Interior" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1800&q=80">
+  </div>
+</section>
+
+  
+<section class="section" id="about">
+  <div class="grid2">
+    <div class="card">
+      <h2>Über die Werkstatt</h2>
+      <p class="sub">Minimaler Text, maximale Klarheit. Perfekt für einen Nebenberuf‑Freelancer: sympathisch, professionell.</p>
+      <div class="features">
+        <div class="feature"><span class="badge">01</span><div><b>Beratung</b><div class="sub">Maße, Holzart, Finish – in 15 Minuten geklärt.</div></div></div>
+        <div class="feature"><span class="badge">02</span><div><b>Fertigung</b><div class="sub">Sichtbare Maserung, robuste Konstruktion.</div></div></div>
+        <div class="feature"><span class="badge">03</span><div><b>Lieferung</b><div class="sub">Aufbau vor Ort (optional).</div></div></div>
+      </div>
+    </div>
+    <div class="card" style="padding:0; overflow:hidden;">
+      <img alt="Holz" src="https://images.unsplash.com/photo-1461127890174-6ed9d1b4d4c1?auto=format&fit=crop&w=1600&q=80" style="width:100%; height:100%; object-fit:cover; display:block;">
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="gallery">
+  <h2>Ausgewählte Tische</h2>
+  <p class="sub">Karten-Layout: sehr gut austauschbar (Bilder, Namen, Maße).</p>
+  <div class="gallery">
+    <div class="tile"><img alt="Tisch" src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1600&q=80"><div class="cap">Eiche • 200×90 • geölt</div></div>
+    <div class="tile"><img alt="Wohnraum" src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&w=1600&q=80"><div class="cap">Walnuss • 160×80 • matt</div></div>
+    <div class="tile"><img alt="Holzdetail" src="https://images.unsplash.com/photo-1461127890174-6ed9d1b4d4c1?auto=format&fit=crop&w=1600&q=80"><div class="cap">Esche • 180×90 • Wachsfertig</div></div>
+  </div>
+</section>
+
+
+<section class="section" id="quote">
+  <div class="card">
+    <h2>Unverbindliche Anfrage</h2>
+    <p class="sub">Mockup: Formular ohne Backend. Fokus: freundlich & schnell verständlich.</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;">
+      <input class="input" style="border-color:var(--line); background: rgba(255,255,255,.92); color: var(--ink);" placeholder="Name" />
+      <input class="input" style="border-color:var(--line); background: rgba(255,255,255,.92); color: var(--ink);" placeholder="E‑Mail" />
+      <input class="input" style="grid-column:1/-1; border-color:var(--line); background: rgba(255,255,255,.92); color: var(--ink);" placeholder="Wunschmaß & Stil" />
+      <a class="btnPrimary" href="#" style="grid-column:1/-1; text-align:center;">Absenden (Mockup)</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div class="foot__left">Konzept 4 • Scandinavian Light • Mockup</div>
+    <div class="foot__right">
+      <a class="foot__link" href="#top">Nach oben</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Login Modal (CSS :target) -->
+<div id="login" class="modal" aria-label="Login Dialog">
+  <div class="modal__panel">
+    <div class="modal__top">
+      <div class="modal__title">Kunden-Login</div>
+      <a class="modal__close" href="#" aria-label="Schließen">✕</a>
+    </div>
+    <div class="modal__content">
+      <p class="muted small">Mockup: Keine echte Funktion – nur UI/Design.</p>
+      <form class="form" action="#" method="post">
+        <input class="input" type="email" placeholder="E-Mail" autocomplete="email" />
+        <input class="input" type="password" placeholder="Passwort" autocomplete="current-password" />
+        <button class="btn btn--full" type="button">Einloggen</button>
+      </form>
+      <p class="muted small" style="margin-top:12px;">
+        <a href="#contact" class="inline-link">Zugang anfragen</a> • <a href="#" class="inline-link">Passwort vergessen</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

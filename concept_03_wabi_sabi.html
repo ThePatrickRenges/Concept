@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Konzept 3 — Wabi‑Sabi Woodcraft (Mockup)</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Fraunces:opsz,wght@9..144,300;9..144,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbfaf7;
+  --paper:#f2efe8;
+  --ink:#1f2326;
+  --muted:#6b6f73;
+  --accent:#8a6a4a; /* cedar */
+  --line:rgba(31,35,38,.12);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(1200px 800px at 10% 0%, rgba(138,106,74,.10), transparent 60%),
+    radial-gradient(900px 700px at 90% 10%, rgba(31,35,38,.06), transparent 55%),
+    var(--bg);
+  color:var(--ink);
+}
+.top{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:saturate(140%) blur(10px);
+  background: rgba(251,250,247,.72);
+  border-bottom:1px solid var(--line);
+}
+.top__inner{
+  max-width:1100px; margin:0 auto;
+  padding:16px 18px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+.brand{
+  text-decoration:none; color:var(--ink);
+  font-family:Fraunces,serif;
+  letter-spacing:.2px;
+  font-size:1.2rem;
+}
+.brand__dot{ color:var(--accent); }
+.nav{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+.nav__link{
+  text-decoration:none; color:var(--muted);
+  padding:10px 10px; border-radius:14px;
+}
+.nav__link:hover{ background: rgba(31,35,38,.04); color:var(--ink); }
+.nav__cta{
+  text-decoration:none; color:var(--ink);
+  padding:10px 14px; border-radius:999px;
+  border:1px solid rgba(138,106,74,.38);
+  background: rgba(138,106,74,.10);
+}
+.nav__cta:hover{ background: rgba(138,106,74,.14); }
+
+.hero{
+  max-width:1100px; margin:0 auto;
+  padding: clamp(48px, 8vh, 96px) 18px 28px;
+  display:grid; gap:22px;
+}
+.hero__grid{
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap:22px;
+  align-items:stretch;
+}
+.kicker{
+  color:var(--accent); text-transform:uppercase;
+  letter-spacing:.18em; font-size:.82rem;
+}
+h1{
+  margin:10px 0 10px;
+  font-family:Fraunces,serif;
+  font-weight:600;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height:1.05;
+}
+.hero p{ margin:0; color:var(--muted); max-width:52ch; font-size:1.06rem; }
+.hero__card{
+  background: rgba(242,239,232,.9);
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  padding:18px;
+}
+.hero__img{
+  border-radius: var(--radius);
+  overflow:hidden;
+  border:1px solid var(--line);
+  background: #eee;
+}
+.hero__img img{ width:100%; height:100%; display:block; object-fit:cover; }
+
+.pills{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+.pill{
+  font-size:.92rem; color:var(--muted);
+  padding:10px 12px; border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.55);
+}
+
+.section{
+  max-width:1100px; margin:0 auto;
+  padding: 70px 18px;
+}
+.split{
+  display:grid; gap:26px;
+  grid-template-columns: .95fr 1.05fr;
+  align-items:center;
+}
+.card{
+  border-radius: var(--radius);
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.6);
+  padding: 22px;
+}
+h2{
+  margin:0 0 14px;
+  font-family:Fraunces,serif;
+  font-weight:600;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+}
+.mini{ color:var(--muted); }
+.quote{
+  border-left: 3px solid rgba(138,106,74,.55);
+  padding-left:14px; color:var(--muted); margin-top:14px;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+.g{
+  border-radius: var(--radius);
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#eee;
+}
+.g img{ width:100%; height:100%; object-fit:cover; display:block; }
+.g--a{ grid-column: span 7; height: 360px; }
+.g--b{ grid-column: span 5; height: 360px; }
+.g--c{ grid-column: span 5; height: 260px; }
+.g--d{ grid-column: span 7; height: 260px; }
+
+.ctaRow{ display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; }
+.inline-link{ color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(138,106,74,.35); }
+.inline-link:hover{ border-bottom-color: rgba(138,106,74,.65); }
+
+.btnPrimary{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: 12px 16px; border-radius: 16px;
+  border:1px solid rgba(138,106,74,.35);
+  background: rgba(138,106,74,.16);
+  text-decoration:none; color:var(--ink);
+}
+.btnGhost{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: 12px 16px; border-radius: 16px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.55);
+  text-decoration:none; color:var(--ink);
+}
+
+.foot{
+  border-top:1px solid var(--line);
+  background: rgba(251,250,247,.86);
+}
+.foot__inner{
+  max-width:1100px; margin:0 auto; padding:18px;
+  display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+  color:var(--muted);
+}
+.foot__link{ color:var(--muted); text-decoration:none; }
+.foot__link:hover{ color:var(--ink); }
+
+/* Modal theming overrides */
+.modal__panel{ background: rgba(31,35,38,.96); color: #f4f2ee; }
+.modal__top{ background: rgba(255,255,255,.04); }
+.modal__title{ font-family:Fraunces,serif; font-weight:600; letter-spacing:.2px; }
+.modal__close{ color:#f4f2ee; }
+.input{ background: rgba(255,255,255,.06); color:#fff; }
+.btn{ background: rgba(138,106,74,.20); color:#fff; }
+.inline-link{ color:#e7d9c8; border-bottom-color: rgba(231,217,200,.28); }
+
+
+/* Modal (no JS) */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0,0,0,.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  z-index: 60;
+}
+.modal:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal__panel {
+  width: min(420px, 100%);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 28px 90px rgba(0,0,0,.35);
+}
+.modal__top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 14px 18px;
+}
+.modal__close {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  text-decoration:none;
+  border: 1px solid rgba(255,255,255,.12);
+}
+.modal__content {
+  padding: 18px;
+}
+.form {
+  display:grid;
+  gap: 12px;
+}
+.input {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.16);
+  outline: none;
+}
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.16);
+  cursor: pointer;
+  user-select: none;
+}
+.btn--full { width: 100%; }
+.muted { opacity: .78; }
+.small { font-size: .92rem; }
+
+@media (max-width: 900px){
+  .hero__grid{ grid-template-columns: 1fr; }
+  .split{ grid-template-columns: 1fr; }
+  .g--a,.g--b,.g--c,.g--d{ grid-column: span 12; height: 260px; }
+}
+</style>
+
+
+</head>
+<body>
+
+<header class="top">
+  <div class="top__inner">
+    <a class="brand" href="#top" aria-label="Home">Woodcraft<span class="brand__dot">•</span></a>
+    <nav class="nav" aria-label="Primärnavigation">
+      <a class="nav__link" href="#home">Start</a>
+<a class="nav__link" href="#about">Über</a>
+<a class="nav__link" href="#work">Arbeiten</a>
+<a class="nav__link" href="#contact">Anfrage</a>
+      <a class="nav__cta" href="#login">Login</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  
+<section class="hero" id="home" aria-label="Hero">
+  <div class="hero__grid">
+    <div class="hero__card">
+      <div class="kicker">Wabi‑Sabi • ruhige Handwerkskunst</div>
+      <h1>Unperfekt. Ehrlich. Zeitlos.</h1>
+      <p>Ein minimalistisches Mockup für einen Schreiner, der mit Massivholz arbeitet – leise, hochwertig und naturverbunden.</p>
+      <div class="pills" aria-label="Highlights">
+        <div class="pill">Massivholz</div>
+        <div class="pill">Öl & Wachs</div>
+        <div class="pill">Auf Maß</div>
+        <div class="pill">Lieferung & Aufbau</div>
+      </div>
+      <div class="ctaRow">
+        <a class="btnPrimary" href="#work">Arbeiten ansehen</a>
+        <a class="btnGhost" href="#contact">Anfrage starten</a>
+      </div>
+    </div>
+    <div class="hero__img" aria-label="Hero Bild">
+      <img alt="Workshop" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1800&q=80">
+    </div>
+  </div>
+</section>
+
+  
+<section class="section" id="about" aria-label="Über">
+  <div class="split">
+    <div class="g" style="height:360px;">
+      <img alt="Portrait / Werkstatt" src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1600&q=80">
+    </div>
+    <div class="card">
+      <h2>Der Mensch hinter dem Holz</h2>
+      <p class="mini">Freelancer‑Werkstatt, keine Massenware. Dieses Layout setzt auf Ruhe, Luft und Materialwirkung.</p>
+      <div class="quote">„Jede Maserung ist ein Abdruck von Zeit – meine Aufgabe ist, sie sichtbar zu lassen.“</div>
+      <p class="mini" style="margin-top:14px;">Sektionen gehen fließend ineinander über: weiche Karten, dezente Linien, warme Akzentfarbe.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="work" aria-label="Arbeiten">
+  <h2>Ausgewählte Arbeiten</h2>
+  <p class="mini">Große Bilder, wenig Text – wie eine stille Galerie.</p>
+  <div class="gallery" style="margin-top:18px;">
+    <div class="g g--a"><img alt="Tisch" src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1600&q=80"></div>
+    <div class="g g--b"><img alt="Detail" src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1600&q=80"></div>
+    <div class="g g--c"><img alt="Werkstatt" src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1600&q=80"></div>
+    <div class="g g--d"><img alt="Interior" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1800&q=80"></div>
+  </div>
+</section>
+
+
+<section class="section" id="contact" aria-label="Kontakt">
+  <div class="card">
+    <h2>Anfrage</h2>
+    <p class="mini">Mockup‑Formular (ohne Backend): Format, Holzart, Kantenprofil, Finish – alles als Konzept sichtbar.</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;">
+      <input class="input" style="border-color:var(--line); background: rgba(255,255,255,.55); color: var(--ink);" placeholder="Name" />
+      <input class="input" style="border-color:var(--line); background: rgba(255,255,255,.55); color: var(--ink);" placeholder="E‑Mail" />
+      <input class="input" style="grid-column:1/-1; border-color:var(--line); background: rgba(255,255,255,.55); color: var(--ink);" placeholder="Wunschmaß (z.B. 200×90cm)" />
+      <textarea class="input" style="grid-column:1/-1; min-height:120px; border-color:var(--line); background: rgba(255,255,255,.55); color: var(--ink);" placeholder="Kurz: Stil, Holz, Budgetrahmen, Termin…"></textarea>
+      <a class="btnPrimary" href="#" style="grid-column:1/-1; text-align:center;">Anfrage senden (Mockup)</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div class="foot__left">Konzept 3 • Wabi‑Sabi / Zen • Mockup</div>
+    <div class="foot__right">
+      <a class="foot__link" href="#top">Nach oben</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Login Modal (CSS :target) -->
+<div id="login" class="modal" aria-label="Login Dialog">
+  <div class="modal__panel">
+    <div class="modal__top">
+      <div class="modal__title">Kunden-Login</div>
+      <a class="modal__close" href="#" aria-label="Schließen">✕</a>
+    </div>
+    <div class="modal__content">
+      <p class="muted small">Mockup: Keine echte Funktion – nur UI/Design.</p>
+      <form class="form" action="#" method="post">
+        <input class="input" type="email" placeholder="E-Mail" autocomplete="email" />
+        <input class="input" type="password" placeholder="Passwort" autocomplete="current-password" />
+        <button class="btn btn--full" type="button">Einloggen</button>
+      </form>
+      <p class="muted small" style="margin-top:12px;">
+        <a href="#contact" class="inline-link">Zugang anfragen</a> • <a href="#" class="inline-link">Passwort vergessen</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Wood — Concept</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg-dark: #111;
+  --bg-light: #1b1b1b;
+  --wood: #8b6a4f;
+  --text: #e0e0e0;
+  --muted: #9a9a9a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--bg-dark);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+section {
+  padding: 10vh 10vw;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+
+/* STATEMENT */
+
+.statement {
+  background: var(--bg-light);
+}
+
+.statement p {
+  max-width: 720px;
+  font-size: 1.2rem;
+  color: var(--muted);
+}
+
+/* GALLERY */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
+  gap: 3rem;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 14px;
+}
+
+/* COMMISSION */
+
+.commission {
+  background: var(--bg-light);
+}
+
+.commission h2 {
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.commission p {
+  max-width: 560px;
+  color: var(--muted);
+}
+
+/* LOGIN */
+
+.login {
+  text-align: center;
+}
+
+.login-box {
+  max-width: 360px;
+  margin: auto;
+  background: #151515;
+  padding: 2.5rem;
+  border-radius: 16px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 0.8rem;
+  background: #111;
+  border: 1px solid #333;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 0.8rem;
+  background: var(--wood);
+  border: none;
+  color: #111;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+  <div>
+    <h1>Studio Wood</h1>
+    <p>Handcrafted furniture for quiet spaces.</p>
+  </div>
+  <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed">
+</section>
+
+<section class="statement">
+  <p>
+    No mass production.  
+    No decoration.  
+    Only form, proportion and material.
+  </p>
+</section>
+
+<section>
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1616627452584-71c3c1b0f9a1">
+    <img src="https://images.unsplash.com/photo-1600585152915-d208bec867a1">
+    <img src="https://images.unsplash.com/photo-1600585154203-63f5c5f84c48">
+  </div>
+</section>
+
+<section class="commission">
+  <h2>Commission</h2>
+  <p>
+    Each piece is built on request.  
+    Dimensions, material and finish are defined personally.
+  </p>
+</section>
+
+<section class="login">
+  <div class="login-box">
+    <input placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button>Login</button>
+  </div>
+</section>
+
+</body>
+</html>

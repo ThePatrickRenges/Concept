@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Konzept 5 — Bold Brand (Mockup)</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0c10;
+  --panel:#10121a;
+  --ink:#f3f4f6;
+  --muted:#b4b7c2;
+  --line: rgba(255,255,255,.12);
+  --accent:#ff5c35;
+  --accent2:#7c5cff;
+  --radius: 22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(1000px 700px at 10% 10%, rgba(255,92,53,.18), transparent 55%),
+    radial-gradient(900px 700px at 90% 25%, rgba(124,92,255,.16), transparent 55%),
+    var(--bg);
+}
+.top{
+  position: sticky; top:0; z-index:50;
+  background: rgba(11,12,16,.65);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom:1px solid var(--line);
+}
+.top__inner{
+  max-width:1200px; margin:0 auto;
+  padding: 16px 18px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+.brand{
+  text-decoration:none;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing:.4px;
+}
+.brand__dot{ color: var(--accent); }
+.nav{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+.nav__link{
+  color: var(--muted);
+  text-decoration:none;
+  padding: 10px 12px;
+  border-radius: 14px;
+}
+.nav__link:hover{ background: rgba(255,255,255,.06); color: var(--ink); }
+.nav__cta{
+  text-decoration:none;
+  color: var(--ink);
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,92,53,.5);
+  background: rgba(255,92,53,.14);
+  box-shadow: 0 18px 60px rgba(255,92,53,.14);
+}
+
+.hero{
+  max-width:1200px; margin:0 auto;
+  padding: clamp(58px, 10vh, 110px) 18px 28px;
+}
+.hero__grid{
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 22px;
+  align-items: stretch;
+}
+.hero__left{
+  padding: 28px;
+  border-radius: var(--radius);
+  border:1px solid var(--line);
+  background: rgba(16,18,26,.70);
+}
+.tag{
+  display:inline-flex; gap:10px; align-items:center;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  color: var(--muted);
+  font-size:.9rem;
+}
+.tag b{ color: var(--ink); font-weight:600; }
+h1{
+  margin: 16px 0 12px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 4.6vw, 4.2rem);
+  line-height: .96;
+}
+.hero p{
+  margin:0;
+  color: var(--muted);
+  max-width: 60ch;
+  font-size: 1.12rem;
+}
+.hero__actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 18px; }
+.btnPrimary{
+  text-decoration:none; color: #0b0c10;
+  background: linear-gradient(135deg, var(--accent), #ffb347);
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-weight: 700;
+}
+.btnGhost{
+  text-decoration:none; color: var(--ink);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.06);
+  padding: 12px 16px; border-radius: 16px;
+}
+.hero__img{
+  border-radius: var(--radius);
+  overflow:hidden;
+  border: 1px solid var(--line);
+  background:#222;
+}
+.hero__img img{ width:100%; height:100%; object-fit:cover; display:block; filter: contrast(1.05) saturate(1.1); }
+
+.section{
+  max-width:1200px; margin:0 auto;
+  padding: 78px 18px;
+}
+h2{
+  font-family: "Space Grotesk", sans-serif;
+  margin:0 0 14px;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+.sub{ color: var(--muted); margin: 0; }
+.cards{
+  margin-top: 18px;
+  display:grid; gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.card{
+  border-radius: 18px;
+  border:1px solid var(--line);
+  background: rgba(16,18,26,.66);
+  padding: 18px;
+}
+.metric{
+  font-family:"Space Grotesk",sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing:-.02em;
+}
+.k{
+  color: var(--muted);
+}
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+}
+.g{
+  border-radius: 20px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:#1a1c25;
+}
+.g img{ width:100%; height:100%; object-fit:cover; display:block; }
+.g1{ grid-column: span 7; height: 360px; }
+.g2{ grid-column: span 5; height: 360px; }
+.g3{ grid-column: span 5; height: 260px; }
+.g4{ grid-column: span 7; height: 260px; }
+
+.cta{
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 16px;
+  align-items: start;
+}
+.panel{
+  border-radius: var(--radius);
+  border:1px solid var(--line);
+  background: rgba(16,18,26,.70);
+  padding: 22px;
+}
+.input{ background: rgba(255,255,255,.06); color:#fff; }
+
+.foot{
+  border-top: 1px solid var(--line);
+  background: rgba(11,12,16,.72);
+}
+.foot__inner{
+  max-width:1200px; margin:0 auto; padding: 18px;
+  display:flex; justify-content:space-between; gap: 14px; flex-wrap:wrap;
+  color: var(--muted);
+}
+.foot__link{ color: var(--muted); text-decoration:none; }
+.foot__link:hover{ color: var(--ink); }
+
+/* Modal theme */
+.modal__panel{ background: #0c0d12; color: #f3f4f6; border:1px solid rgba(255,255,255,.10); }
+.modal__top{ background: rgba(255,255,255,.04); }
+.modal__close{ color:#f3f4f6; }
+.btn{ background: rgba(255,92,53,.20); color:#fff; border-color: rgba(255,92,53,.25); }
+.inline-link{ color: #ffd3c8; border-bottom-color: rgba(255,211,200,.25); }
+
+
+/* Modal (no JS) */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0,0,0,.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  z-index: 60;
+}
+.modal:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal__panel {
+  width: min(420px, 100%);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 28px 90px rgba(0,0,0,.35);
+}
+.modal__top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 14px 18px;
+}
+.modal__close {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  text-decoration:none;
+  border: 1px solid rgba(255,255,255,.12);
+}
+.modal__content {
+  padding: 18px;
+}
+.form {
+  display:grid;
+  gap: 12px;
+}
+.input {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.16);
+  outline: none;
+}
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.16);
+  cursor: pointer;
+  user-select: none;
+}
+.btn--full { width: 100%; }
+.muted { opacity: .78; }
+.small { font-size: .92rem; }
+
+@media (max-width: 960px){
+  .hero__grid{ grid-template-columns: 1fr; }
+  .cta{ grid-template-columns: 1fr; }
+  .g1,.g2,.g3,.g4{ grid-column: span 12; height: 260px; }
+}
+</style>
+
+
+</head>
+<body>
+
+<header class="top">
+  <div class="top__inner">
+    <a class="brand" href="#top" aria-label="Home">Woodcraft<span class="brand__dot">•</span></a>
+    <nav class="nav" aria-label="Primärnavigation">
+      <a class="nav__link" href="#home">Start</a>
+<a class="nav__link" href="#stats">Konzept</a>
+<a class="nav__link" href="#gallery">Showreel</a>
+<a class="nav__link" href="#offer">Anfrage</a>
+      <a class="nav__cta" href="#login">Login</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  
+<section class="hero" id="home">
+  <div class="hero__grid">
+    <div class="hero__left">
+      <div class="tag"><b>Bold Brand</b> • Typografie als Design • High Impact</div>
+      <h1>MAKE.<br>WOOD.<br>LOUD.</h1>
+      <p>Ein mutiges, modernes Mockup: große Headlines, starke Kontraste, klare Brand‑Attitüde. Ideal, wenn der Kunde „Statement“ will.</p>
+      <div class="hero__actions">
+        <a class="btnPrimary" href="#gallery">Showreel</a>
+        <a class="btnGhost" href="#offer">Projekt anfragen</a>
+      </div>
+    </div>
+    <div class="hero__img">
+      <img alt="Hero" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1800&q=80">
+    </div>
+  </div>
+</section>
+
+  
+<section class="section" id="stats">
+  <h2>Warum das funktioniert</h2>
+  <p class="sub">Das Layout ist „laut“, aber kontrolliert: Brand‑Farben, große Typo, klare CTA‑Wege.</p>
+  <div class="cards">
+    <div class="card"><div class="metric">+38%</div><div class="k">mehr Aufmerksamkeit (visuell)</div></div>
+    <div class="card"><div class="metric">2</div><div class="k">CTAs – keine Verwirrung</div></div>
+    <div class="card"><div class="metric">0</div><div class="k">Backend-Abhängigkeit (Mockup)</div></div>
+    <div class="card"><div class="metric">1</div><div class="k">Markenidee – sofort klar</div></div>
+  </div>
+</section>
+
+
+<section class="section" id="gallery">
+  <h2>Pieces</h2>
+  <p class="sub">Editoriales Grid: wirkt wie Lookbook / Magazin.</p>
+  <div class="gallery">
+    <div class="g g1"><img alt="1" src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1600&q=80"></div>
+    <div class="g g2"><img alt="2" src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&w=1600&q=80"></div>
+    <div class="g g3"><img alt="3" src="https://images.unsplash.com/photo-1461127890174-6ed9d1b4d4c1?auto=format&fit=crop&w=1600&q=80"></div>
+    <div class="g g4"><img alt="4" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1800&q=80"></div>
+  </div>
+</section>
+
+
+<section class="section" id="offer">
+  <div class="cta">
+    <div class="panel">
+      <h2>Custom Project</h2>
+      <p class="sub">Kurzer Pitch‑Block, der im Verkauf funktioniert: prägnant, direkt, „Marke“.</p>
+      <p class="sub" style="margin-top:10px;">• Maß • Holzart • Oberfläche • Liefertermin</p>
+      <div class="hero__actions" style="margin-top:16px;">
+        <a class="btnPrimary" href="#contact">Anfrage starten</a>
+        <a class="btnGhost" href="#login">Kundenlogin</a>
+      </div>
+    </div>
+    <div class="panel" id="contact">
+      <h2>Quick Request</h2>
+      <p class="sub">Mockup‑Form (UI only).</p>
+      <div style="display:grid; gap:10px; margin-top:14px;">
+        <input class="input" placeholder="Name" />
+        <input class="input" placeholder="E‑Mail" />
+        <input class="input" placeholder="Wunschmaß / Stil" />
+        <a class="btnPrimary" href="#" style="text-align:center;">Send (Mockup)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div class="foot__left">Konzept 5 • Bold Craftsman / Modern Brand • Mockup</div>
+    <div class="foot__right">
+      <a class="foot__link" href="#top">Nach oben</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Login Modal (CSS :target) -->
+<div id="login" class="modal" aria-label="Login Dialog">
+  <div class="modal__panel">
+    <div class="modal__top">
+      <div class="modal__title">Kunden-Login</div>
+      <a class="modal__close" href="#" aria-label="Schließen">✕</a>
+    </div>
+    <div class="modal__content">
+      <p class="muted small">Mockup: Keine echte Funktion – nur UI/Design.</p>
+      <form class="form" action="#" method="post">
+        <input class="input" type="email" placeholder="E-Mail" autocomplete="email" />
+        <input class="input" type="password" placeholder="Passwort" autocomplete="current-password" />
+        <button class="btn btn--full" type="button">Einloggen</button>
+      </form>
+      <p class="muted small" style="margin-top:12px;">
+        <a href="#contact" class="inline-link">Zugang anfragen</a> • <a href="#" class="inline-link">Passwort vergessen</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

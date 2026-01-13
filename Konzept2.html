@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Woodcraft AR — Virtuelles Tischstudio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --wood: #8b6f47;
+  --wood-dark: #6b4f3f;
+  --sand: #f5f1ec;
+  --dark: #1a1a1a;
+  --accent: #d4af37;
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.18);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1410 100%);
+  color: white;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ---------- AR VIEWPORT ---------- */
+
+.ar-viewport {
+  position: relative;
+  min-height: 100vh;
+  background: 
+    radial-gradient(ellipse at top, rgba(139, 111, 71, 0.15) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 20, 16, 0.98) 100%),
+    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Scanning Grid Effect */
+.scan-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(212, 175, 55, 0.03) 2px, rgba(212, 175, 55, 0.03) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(212, 175, 55, 0.03) 2px, rgba(212, 175, 55, 0.03) 4px);
+  pointer-events: none;
+  animation: gridPulse 4s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* AR Scanline */
+.scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  box-shadow: 0 0 20px var(--accent);
+  animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: 0%; opacity: 0; }
+  50% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Corner Markers */
+.ar-corners {
+  position: absolute;
+  inset: 3rem;
+  pointer-events: none;
+}
+
+.corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--accent);
+  opacity: 0.6;
+  animation: cornerPulse 2s ease-in-out infinite;
+}
+
+.corner.tl { top: 0; left: 0; border-right: none; border-bottom: none; }
+.corner.tr { top: 0; right: 0; border-left: none; border-bottom: none; }
+.corner.bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+.corner.br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+@keyframes cornerPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* ---------- AR HUD ---------- */
+
+.ar-hud {
+  position: relative;
+  z-index: 10;
+  max-width: 1400px;
+  width: 100%;
+}
+
+.hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.hud-logo {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  letter-spacing: 2px;
+}
+
+.hud-status {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  font-size: 0.85rem;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ff88;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ---------- AR MAIN CONTENT ---------- */
+
+.ar-main {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* 3D Preview Area */
+.ar-preview {
+  position: relative;
+  aspect-ratio: 16/10;
+  background: var(--glass);
+  border: 2px solid var(--glass-border);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.preview-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: 
+    radial-gradient(ellipse at center, rgba(139, 111, 71, 0.2) 0%, transparent 70%),
+    url("https://images.unsplash.com/photo-1616627452584-71c3c1b0f9a1");
+  background-size: cover;
+  background-position: center;
+  filter: contrast(1.1) brightness(0.9);
+}
+
+.preview-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 30%, rgba(10, 10, 10, 0.6) 100%);
+}
+
+/* Table Hologram Effect */
+.table-hologram {
+  position: relative;
+  width: 70%;
+  height: 70%;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(139, 111, 71, 0.15));
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  box-shadow: 
+    0 0 40px rgba(212, 175, 55, 0.4),
+    inset 0 0 40px rgba(212, 175, 55, 0.1);
+  animation: hologramFloat 4s ease-in-out infinite;
+}
+
+@keyframes hologramFloat {
+  0%, 100% { transform: translateY(0) rotateY(-5deg); }
+  50% { transform: translateY(-10px) rotateY(5deg); }
+}
+
+.preview-controls {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+}
+
+.control-btn {
+  padding: 0.8rem 1.5rem;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* AR Control Panel */
+.ar-panel {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+  padding: 2.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.panel-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+
+.panel-section {
+  margin-bottom: 2rem;
+}
+
+.section-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.8rem;
+}
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+}
+
+.option-btn {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.option-btn:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: var(--accent);
+  transform: scale(1.05);
+}
+
+.option-btn.active {
+  background: rgba(212, 175, 55, 0.25);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.slider-container {
+  margin-top: 0.8rem;
+}
+
+.slider {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.dimension-display {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.action-btn {
+  width: 100%;
+  padding: 1.2rem;
+  background: linear-gradient(135deg, var(--wood) 0%, var(--wood-dark) 100%);
+  border: 1px solid var(--accent);
+  border-radius: 16px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 30px rgba(139, 111, 71, 0.3);
+}
+
+.action-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 15px 40px rgba(139, 111, 71, 0.4),
+    0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+/* ---------- INFO CARDS ---------- */
+
+.info-section {
+  padding: 6rem 8vw;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.info-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.info-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.info-card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.info-card p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 1100px) {
+  .ar-main {
+    grid-template-columns: 1fr;
+  }
+  
+  .ar-panel {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .hud-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .hud-status {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .option-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .ar-corners {
+    inset: 1rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="ar-viewport">
+  <div class="scan-grid"></div>
+  <div class="scanline"></div>
+  
+  <div class="ar-corners">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+  </div>
+
+  <div class="ar-hud">
+    <div class="hud-header">
+      <div class="hud-logo">WOODCRAFT</div>
+      <div class="hud-status">
+        <div class="status-item">
+          <div class="status-dot"></div>
+          <span>AR AKTIV</span>
+        </div>
+        <div class="status-item">
+          <span>RAUM ERKANNT</span>
+        </div>
+        <div class="status-item">
+          <span>TRACKING: 99%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ar-main">
+      <div class="ar-preview">
+        <div class="preview-content">
+          <div class="table-hologram"></div>
+        </div>
+        <div class="preview-overlay"></div>
+        <div class="preview-controls">
+          <button class="control-btn">↻ DREHEN</button>
+          <button class="control-btn">⊕ ZOOM</button>
+          <button class="control-btn">📸 FOTO</button>
+        </div>
+      </div>
+
+      <div class="ar-panel">
+        <h2 class="panel-title">Tisch Konfiguration</h2>
+        
+        <div class="panel-section">
+          <div class="section-label">Holzart</div>
+          <div class="option-grid">
+            <button class="option-btn active">Eiche</button>
+            <button class="option-btn">Nussbaum</button>
+            <button class="option-btn">Ahorn</button>
+            <button class="option-btn">Kirsche</button>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-label">Abmessungen</div>
+          <div class="slider-container">
+            <input type="range" class="slider" min="120" max="240" value="180">
+            <div class="dimension-display">
+              <span>Länge:</span>
+              <span>180 cm</span>
+            </div>
+          </div>
+          <div class="slider-container">
+            <input type="range" class="slider" min="70" max="120" value="90">
+            <div class="dimension-display">
+              <span>Breite:</span>
+              <span>90 cm</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-label">Oberflächenbehandlung</div>
+          <div class="option-grid">
+            <button class="option-btn active">Natur Öl</button>
+            <button class="option-btn">Matt Lackiert</button>
+            <button class="option-btn">Gewachst</button>
+            <button class="option-btn">Rohholz</button>
+          </div>
+        </div>
+
+        <button class="action-btn">In Raum Platzieren</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="info-section">
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-icon">🔍</div>
+      <h3>AR Vorschau</h3>
+      <p>Sehen Sie Ihren Tisch in Echtgröße in Ihrem Raum, bevor Sie bestellen. Bewegen Sie sich um das virtuelle Möbelstück und prüfen Sie jedes Detail.</p>
+    </div>
+    
+    <div class="info-card">
+      <div class="info-icon">✋</div>
+      <h3>Handgefertigt</h3>
+      <p>Jeder Tisch wird von erfahrenen Handwerkern in traditioneller Technik gefertigt. Keine Massenproduktion, nur authentisches Handwerk.</p>
+    </div>
+    
+    <div class="info-card">
+      <div class="info-icon">🎨</div>
+      <h3>Individuell</h3>
+      <p>Wählen Sie Holzart, Maße und Oberflächenbehandlung nach Ihren Wünschen. Jedes Stück ist ein Unikat, perfekt für Ihren Raum.</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
